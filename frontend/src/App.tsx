@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import { uploadFile } from './routes/upload_file'
 import { askQuestion } from './routes/ask_question'
@@ -15,7 +15,14 @@ function App() {
   const [isAnwering, setIsAnswering] = useState<boolean>(false)
   const [file, setfile] = useState<File | null>(null)
   const [chat, setChat] = useState<{ sender: string; text: string }[]>([])
+  const chatEndRef = useRef<HTMLDivElement | null>(null);
+
   const [fileName, setFileName] = useState<string>("")
+
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chat]);
 
   const selectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -103,7 +110,8 @@ function App() {
     <>
       <div className='text-white bg-neutral-800 h-screen w-screen flex justify-center items-center '>
         <div className="md:w-[60%] rounded-2xl sm:w-full bg- bg-black h-[calc(100vh-30px)] p-2" >
-          <div className="flex flex-col space-y-3 overflow-y-auto p-4 h-[80vh]">
+          <div className="flex flex-col space-y-3 overflow-y-auto p-4 h-[80vh] scrollbar">
+            <>
             {
               chat.map((msg, i) => {
                 if (msg.sender === 'bot') {
@@ -136,9 +144,10 @@ function App() {
                 }
               })
             }
+            </>
+            <div ref={chatEndRef}></div>
           </div>
           <div className=''>
-            
             <div className='bg-neutral-800 h-14 rounded-4xl flex items-center justify-between'>
               <input className='ml-5 w-full outline-none' placeholder='Ask you pdf...'
                 type="text"
@@ -157,7 +166,7 @@ function App() {
                 <button
                   onClick={ask_question}
                   disabled={isAnwering && isUploading}
-                  className='mr-5 bg-white p-2 rounded-full text-2xl cursor-pointer'>
+                  className={`mr-5  p-2 rounded-full text-2xl cursor-pointer ${question? "bg-white":"bg-gray-400  "}`}>
                   {
                     isAnwering ? <><FaSquare className='text-black' /></> : <FaArrowUp className='text-black' />
                   }

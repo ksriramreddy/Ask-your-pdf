@@ -1,1 +1,32 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  padding: 1px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(to top, rgb(88, 86, 90), rgb(57, 56, 57));
+    margin: 1px;
+  border-radius: 4px;
+}
+.scrollbar::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, rgba(135, 77, 176, 0.1), rgba(0, 0, 0, 0.2));
+  border-radius: 4px;
+  padding: 1px;
+}
+.scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, rgba(135, 77, 176, 0.1), rgba(0, 0, 0, 0.2));
+padding: 1px;
+}
+.scrollbar::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(to bottom, rgba(135, 77, 176, 0.1), rgba(0, 0, 0, 0.2));
+    padding: 1px;
+}
