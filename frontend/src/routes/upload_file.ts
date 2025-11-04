@@ -1,3 +1,4 @@
+import { PiTextIndent } from "react-icons/pi";
 import {axiosInstance} from "../axios/axios"
 
 
@@ -15,8 +16,8 @@ export const uploadFile = async (file : File) =>{
 
         return resp.data
     } catch (error) {
-        return {
-            "error" : error
-        }
+        console.log("failed to upload");
+        
+        throw new Error(error.message)
     }
 }

@@ -8,10 +8,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # your React app URL
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
-    allow_methods=["*"],  # allow all HTTP methods (POST, GET, etc.)
-    allow_headers=["*"],  # allow all headers
+    allow_methods=["*"],  
+    allow_headers=["*"],  
 )
 
 @app.post("/uploadfile")
@@ -30,10 +30,8 @@ async def upload_file(file : UploadFile):
         return {
             "success" : "Pdf uploaded successfully"
         }
-    except Exception as e:
-        return {
-            "error" : str(e)
-        }
+    except Exception:
+        raise
     
 
 @app.post('/ask')
